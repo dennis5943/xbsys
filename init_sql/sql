@@ -1,0 +1,107 @@
+﻿DROP TABLE "sys_setting";
+CREATE TABLE "sys_setting" (
+        "setting_name" character varying(256) NOT NULL,
+        "setting_value" text NOT NULL,
+        Primary Key ("setting_name")
+);
+REVOKE ALL on "sys_setting" from PUBLIC;
+GRANT  ALL on "sys_setting" to "postgres";
+GRANT  ALL on "sys_setting" to "www";
+
+insert into sys_setting values ('sys_msg','');
+insert into sys_setting values ('xbl_exp_days','7');
+
+DROP TABLE "sys_user";
+CREATE TABLE "sys_user" (
+        "user_id" integer NOT NULL,
+        "user_pass" text NOT NULL,
+        "user_type" integer DEFAULT 0 NOT NULL,
+        "user_name" character varying(256) NOT NULL,
+        "user_color" bigint,
+        "xbl_AvatarTile" character varying(256),
+        "xbl_update_time" timestamp without time zone DEFAULT now(),
+        "remark" text,
+        Primary Key ("user_id")
+);
+REVOKE ALL on "sys_user" from PUBLIC;
+GRANT  ALL on "sys_user" to "postgres";
+GRANT  ALL on "sys_user" to "www";
+
+insert into sys_user values (1,'jasmine',7,'kakamiTW');
+
+-- DROP TABLE "sys_online_user";
+-- CREATE TABLE "sys_online_user" (
+--         "user_id" integer NOT NULL,
+--         "login_time" timestamp without time zone NOT NULL,
+--         "remark" text,
+--         Primary Key ("user_id")
+-- );
+-- REVOKE ALL on "sys_online_user" from PUBLIC;
+-- GRANT  ALL on "sys_online_user" to "postgres";
+-- GRANT  ALL on "sys_online_user" to "www";
+
+
+DROP SEQUENCE "seq_msg_id";
+CREATE SEQUENCE "seq_msg_id" start 1 increment 1 maxvalue 2147483647 minvalue 1  cache 1 ;
+REVOKE ALL on "seq_msg_id" from PUBLIC;
+GRANT ALL on "seq_msg_id" to "postgres";
+GRANT ALL on "seq_msg_id" to "www";
+
+DROP TABLE "log_msg";
+CREATE TABLE "log_msg" (
+		"msg_id" integer NOT NULL DEFAULT nextval('"seq_msg_id"'::text), 
+        "user_id" integer NOT NULL,
+        "time" timestamp without time zone NOT NULL,
+        "msg" text,
+        Primary Key ("msg_id")
+);
+REVOKE ALL on "log_msg" from PUBLIC;
+GRANT  ALL on "log_msg" to "postgres";
+GRANT  ALL on "log_msg" to "www";
+
+DROP SEQUENCE "seq_arrange_id";
+CREATE SEQUENCE "seq_arrange_id" start 1 increment 1 maxvalue 2147483647 minvalue 1  cache 1 ;
+REVOKE ALL on "seq_arrange_id" from PUBLIC;
+GRANT ALL on "seq_arrange_id" to "postgres";
+GRANT ALL on "seq_arrange_id" to "www";
+
+DROP TABLE "log_arrange";
+CREATE TABLE "log_arrange" (
+		"arrange_id" integer NOT NULL DEFAULT nextval('"seq_arrange_id"'::text), 
+        "user_id" integer NOT NULL,
+        "game_id" integer NOT NULL,
+        "time" timestamp without time zone NOT NULL,
+        "msg" text,
+        Primary Key ("arrange_id")
+);
+REVOKE ALL on "log_arrange" from PUBLIC;
+GRANT  ALL on "log_arrange" to "postgres";
+GRANT  ALL on "log_arrange" to "www";
+
+DROP TABLE "sys_game";
+CREATE TABLE "sys_game" (
+        "game_id" integer NOT NULL,
+        "game_name" character varying(64) NOT NULL,
+		"icon_url" text,
+        "remark" text,
+        Primary Key ("game_id")
+);
+REVOKE ALL on "sys_game" from PUBLIC;
+GRANT  ALL on "sys_game" to "postgres";
+GRANT  ALL on "sys_game" to "www";
+
+insert into sys_game values (1,'Gears of War(戰爭機器)');
+insert into sys_game values (2,'Assassins Creed: Brotherhood(刺客教條: 兄弟會)');
+insert into sys_game values (3,'Assassins Creed: Revelations(刺客教條: 啟示錄)');
+
+-- status: 1=不參加, 2=未確定, 3=參加
+DROP TABLE "log_arrange_apply";
+CREATE TABLE "log_arrange_apply" (
+        "user_id" integer NOT NULL,
+		"arrange_id" integer NOT NULL,
+        "status" integer NOT NULL DEFAULT 2,
+        Primary Key ("user_id","arrange_id")
+);
+REVOKE ALL on "log_arrange_apply" from PUBLIC;
+GRANT  ALL on "log_arrange_apply" to "postgres";
+GRANT  ALL on "log_arrange_apply" to "www";
