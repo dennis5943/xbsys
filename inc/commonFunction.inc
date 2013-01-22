@@ -189,6 +189,9 @@ function getSystemSetting($settingName) {
 //  "AuthedAs": null
 //}
 function getXBL($gamertag) {
+	if(strpos($gamertag,' ') !== false)  {
+		$gamertag = str_replace(' ','%20',$gamertag);
+	}
 	// Settings
 	$profileUrl = 'http://www.xboxleaders.com/api/profile/'.$gamertag.'.json';
 	
