@@ -85,9 +85,20 @@ function getMySchedue($userId,$status) {
 		if(strlen($avatar_joinMember) == 0) { $style_divJoin = "style='display:none'"; }
 		if(strlen($avatar_notJoinMember) == 0) { $style_divNotJoin = "style='display:none'"; }
 
+		// week
+		switch(date("l",strtotime($mod->time))) {
+			case 'Sunday':	$strWeek = '（日）';break;
+			case 'Monday':	$strWeek = '（一）';break;
+			case 'Tuesday':	$strWeek = '（二）';break;
+			case 'Wednesday':	$strWeek = '（三）';break;
+			case 'Thursday':	$strWeek = '（四）';break;
+			case 'Friday':	$strWeek = '（五）';break;
+			case 'Saturday':	$strWeek = '（六）';break;
+		}
+
 		$str .= "<tr class='warning' trigger='1' inx='".($i+1)."' status='$status'>
 			<td>".($i+1)."</td>
-			<td>".date("Y/m/d H:i",strtotime($mod->time))."</td>
+			<td>".date("m/d H:i",strtotime($mod->time))."$strWeek</td>
 			<td>".$mod->game_name."</td>
 			<td>".$mod->user_name."</td>
 			<td>".$mod->msg."</td>

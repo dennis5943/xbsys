@@ -1,0 +1,12 @@
+﻿insert into sys_setting values ('sys_msg','');
+insert into sys_setting values ('xbl_exp_days','7');
+
+insert into sys_user values (1,'jasmine',7,'kakamiTW');
+
+insert into sys_game values (1,'Gears of War(戰爭機器)');
+insert into sys_game values (2,'Assassins Creed: Brotherhood(刺客教條: 兄弟會)');
+insert into sys_game values (3,'Assassins Creed: Revelations(刺客教條: 啟示錄)');
+insert into sys_game values (4,'HALO 3(最後一戰3)');
+insert into sys_game values (5,'HALO 4(最後一戰4)');
+insert into sys_game values (6,'BioShock 2(生化奇兵2)');
+insert into sys_game values (7,'Red Dead Redemption(碧血狂殺)');

@@ -24,14 +24,19 @@ if($request_by_ajax != 1) {
 
 function main() {
 	$list_game = getGameList();
+	$modal = getModalAlert('Sending...');
+	$modal2 = getModalAlertBtn('新增完成');
 	
 	$str = "
 		<form class='form-horizontal'>
+			<div>
+				$modal
+				$modal2</div>
 			<div class='control-group'>
 				<div class='controls'>
 					<div class='input'>
 					<button class='btn disabled' type='button'>Game</button>
-					<select id='sel_game'>$list_game</select>
+					<select id='sel_game' style='width:365px'>$list_game</select>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$('#txt_account').focus();
+});
+
 function onclkLogin() {
 	var request_url = "login.php?request_by_ajax=1"
 		+"&loader=1"

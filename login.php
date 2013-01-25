@@ -47,7 +47,7 @@ function main() {
 					</div>
 					<div class='control-group'>
 						<div class='controls'>
-							<button class='btn btn-primary' onclick='onclkLogin();return false;'><i class='icon-off icon-white'></i> Log me in!</button>
+							<button class='btn btn-primary btn-large' onclick='onclkLogin();return false;'><i class='icon-off icon-white'></i> Log me in!</button>
 						</div>
 					</div>
 				</form>

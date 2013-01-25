@@ -20,15 +20,17 @@ function onclkSubmitMsg() {
 			alert("[xxx] xmlHttp Failure!!");
 		},
 		complete: function(response){
-			$('#div_msg').prepend(response.responseText);
-			$('#div_msg blockquote').eq(0).hide().show('slide',{ direction: "left" });
-			$('#txt_myMsg').val('');
-			$('#modal_loading').modal('toggle');
+			window.location.replace("msg.php");
+			//$('#div_msg').prepend(response.responseText);
+			//$('#div_msg blockquote').eq(0).hide().show('slide',{ direction: "left" });
+			//$('#txt_myMsg').val('');
+			//$('#modal_loading').modal('toggle');
 		}
 	});
 }
 
 function onclkDeleteMsg(msgId) {
+	$('#modal_loading_del').modal('toggle');
 	var request_url = "msg.php?request_by_ajax=1"
 		+"&loader=1"
 		+"&req_type=onclkDeleteMsg"
@@ -43,7 +45,8 @@ function onclkDeleteMsg(msgId) {
 			alert("[xxx] xmlHttp Failure!!");
 		},
 		complete: function(response){
-			$('#div_msg').html(response.responseText);
+			$('#modal_loading_del').modal('toggle');
+			$('#bq_' + msgId).fadeOut(300, function(){ $(this).remove();});
 		}
 	});
 }

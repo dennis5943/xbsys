@@ -8,6 +8,8 @@ $(document).ready(function() {
 });
 
 function onclkSubmitArrange() {
+	$('#modal_loading').modal('toggle');
+	
 	var request_url = "arrange.php?request_by_ajax=1"
 		+"&loader=1"
 		+"&req_type=onclkSubmitArrange"
@@ -26,7 +28,8 @@ function onclkSubmitArrange() {
 		},
 		complete: function(response){
 			$('#txt_myMsg').val('');
-			alert("新增完成");
+			$('#modal_loading').modal('toggle');
+			$('#modal_alertBtn').modal('toggle');
 		}
 	});
 }

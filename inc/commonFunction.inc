@@ -230,15 +230,31 @@ function writeLog($msg,$filename="logFile") {
 }
 
 // out: div
-function getModalAlert($msg) {
+function getModalAlert($msg,$divId='modal_loading') {
 	$ret = "
 		<!-- Modal -->
-		<div id='modal_loading' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+		<div id='$divId' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
 			<!-- <div class='modal-header'></div> -->
 			<div class='modal-body'>
 				<h1>$msg</h1>
 				<div style='text-align:center'><img src='img/loading_heavy_machine_gun.gif'></div></div>
 			<!-- <div class='modal-footer'></div> -->
+		</div>";
+		
+	return $ret;
+}
+
+// out: div
+function getModalAlertBtn($msg) {
+	$ret = "
+		<!-- Modal -->
+		<div id='modal_alertBtn' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+			<!-- <div class='modal-header'></div> -->
+			<div class='modal-body'>
+				<h1>$msg</h1>
+				<div style='text-align:center'><img src='img/rebel_gossip.gif'></div></div>
+			<div class='modal-footer'>
+				<button class='btn btn-primary btn-large' onclick='$(\"#modal_alertBtn\").modal(\"toggle\");return false;'><i class='icon-ok icon-white'></i> OK</button></div>
 		</div>";
 		
 	return $ret;
