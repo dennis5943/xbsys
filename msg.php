@@ -107,6 +107,7 @@ function getAllMsg($limit=MSG_PER_PAGE, $page) {
 	$record = $sess->getResult($sql); 
 	for($i=0; $i < count($record); $i++){
 		$mod = $record[$i];
+		$class_system = '';
 
 		$str_time = date('Y/m/d H:i',strtotime($mod->time));
 		if($mod->user_id == $_SESSION['userId']) {
@@ -126,6 +127,12 @@ function getAllMsg($limit=MSG_PER_PAGE, $page) {
 			}
 		}
 		
+		if($mod->user_id == USER_ID_SYSTEM) {	// system msg
+			$div_msg = "<div class='alert alert-success'><div style='margin-left: 88px;position: relative;'>".$btn_del."<i class='icon-info-sign'></i> ".$mod->msg."</div></div>";
+		} else {	// normal msg
+			$div_msg = "<pre><div style='margin-left: 88px;position: relative;'>".$btn_del.$mod->msg."</div></pre>";
+		}
+		
 		$str .= "<blockquote id='bq_".$mod->msg_id."'>
 			<div class='input-append'>
 			<button class='btn btn-primary disabled' type='button'>".$mod->user_name."</button>
@@ -134,7 +141,7 @@ function getAllMsg($limit=MSG_PER_PAGE, $page) {
 			</div>
 			
 			<div style='float:left;' class='cls_avatar' userName='".$mod->user_name."'>$img_avatar</div>
-			<pre><div style='margin-left: 88px;position: relative;'>".$btn_del.$mod->msg."</div></pre>
+			$div_msg
 			</blockquote>";
 	}
 	

@@ -5,6 +5,7 @@ define("USER_ARRANGE_STATUS_NO", 3);
 define("USER_TYPE_LV_1", 1);
 define("USER_TYPE_LV_2", 2);
 define("USER_TYPE_LV_4", 4);
+define("USER_ID_SYSTEM", 5566);
 
 $GLOBAL_XBL = array();
 
@@ -78,7 +79,11 @@ function getUserInfo($userId) {
 			|| strlen($mod->xbl_avatartile) == 0) {
 			updateXBL($mod->user_id,$mod->user_name);
 		}
-		$UINFO['xbl_AvatarTile'] = $mod->xbl_avatartile;
+		if($UINFO['userId'] == USER_ID_SYSTEM) {
+			$UINFO['xbl_AvatarTile'] = "img/tile_system.jpg";
+		} else {
+			$UINFO['xbl_AvatarTile'] = $mod->xbl_avatartile;
+		}
 	}
 
 	return $UINFO;
@@ -258,6 +263,24 @@ function getModalAlertBtn($msg) {
 		</div>";
 		
 	return $ret;
+}
+
+function getGameInfo($gameId) {
+	global $sess;
+	
+	$GINFO = array();
+
+	$sql = "select * from sys_game where game_id=$gameId;";
+	$record = $sess->getResult($sql); 
+	for($i=0; $i < count($record); $i++){
+		$mod = $record[$i];
+
+		$GINFO['gameId'] = $mod->game_id;
+		$GINFO['gameName'] = $mod->game_name;
+		$GINFO['iconUrl'] = $mod->icon_url;
+	}
+	
+	return $GINFO;
 }
 
 ?>

@@ -109,8 +109,15 @@ function onclkSubmitArrange($sel_game,$txt_date,$txt_time,$txt_myMsg) {
 	
 	$dateTime = $txt_date.' '.$txt_time;
 	$arrange_id = getNewSeq('seq_arrange_id');
-	$sql = "insert into log_arrange (arrange_id,user_id,game_id,time,msg) 
-		values ($arrange_id,".$_SESSION['userId'].",$sel_game,'$dateTime','$txt_myMsg');";
+	$msgId = getNewSeq('seq_msg_id');
+	$GINFO = getGameInfo($sel_game);
+	
+	$msg = $_SESSION['userName']." 揪了 ".$GINFO['gameName'];
+	$sql = "
+		insert into log_arrange (arrange_id,user_id,game_id,time,msg) 
+		values ($arrange_id,".$_SESSION['userId'].",$sel_game,'$dateTime','$txt_myMsg');
+		insert into log_msg (msg_id,user_id,time,msg) 
+		values ($msgId,".USER_ID_SYSTEM.",now(),'$msg');";
 	$record = $sess->getResult($sql);
 		
 	// get all user id
