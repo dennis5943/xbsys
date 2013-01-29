@@ -22,8 +22,9 @@ if($request_by_ajax != 1) {
 }
 
 function main() {
-	list($str_schedue,$count_schedue) = getMySchedue($_SESSION['userId'],USER_ARRANGE_STATUS_YES);
-	list($str_schedueReverse,$count_schedueReverse) = getMySchedue($_SESSION['userId'],USER_ARRANGE_STATUS_YET);
+	list($str_scheduePassed,$x) = getMySchedue($_SESSION['userId'],array(USER_ARRANGE_STATUS_YES,USER_ARRANGE_STATUS_YET),true);
+	list($str_schedue,$count_schedue) = getMySchedue($_SESSION['userId'],array(USER_ARRANGE_STATUS_YES),false);
+	list($str_schedueReverse,$count_schedueReverse) = getMySchedue($_SESSION['userId'],array(USER_ARRANGE_STATUS_YET),false);
 	$str = "
 		<div class='container'>
 			<form class='form-horizontal'>
@@ -47,6 +48,15 @@ function main() {
 					.$str_schedueReverse."</pre>
 					</blockquote>
 				</div>
+				<div id='div_scheduePassed'>
+					<blockquote>
+					<div class='input'>
+					<button class='btn btn-inverse disabled' type='button' onclick='$(\"#pre_scheduePassed\").toggle();' style='cursor: n-resize'><i class='icon-lock'></i> 過期的約戰</button>
+					</div>
+					<pre id='pre_scheduePassed' style='display:none'>"
+					.$str_scheduePassed."</pre>
+					</blockquote>
+				</div>
 			</form>
 		</div>";
 	
@@ -62,8 +72,16 @@ function loader_schedue($reqType) {
 	}
 }
 
-function getMySchedue($userId,$status) {
+// $isPassed: bool
+function getMySchedue($userId,$status,$isPassed) {
 	global $sess;
+	
+	$status = implode(',',$status);
+	if($isPassed) {
+		$cri_time = "and la.time < now()";
+	} else {
+		$cri_time = "and la.time >= now()";
+	}
 	
 	$sql = "select laa.arrange_id,la.game_id,ga.game_name,la.time,la.msg,usr.user_name from log_arrange_apply laa
 		left join log_arrange la
@@ -74,6 +92,7 @@ function getMySchedue($userId,$status) {
 			on (usr.user_id=la.user_id)
 		where laa.user_id=$userId 
 			and laa.status in ($status)
+			$cri_time
 		order by la.time;";
 
 	$record = $sess->getResult($sql); 
