@@ -15,18 +15,16 @@ function getNavbar($userName) {
 	$scriptName = str_replace('.php','',$scriptName);
 	switch($scriptName) {
 		case 'msg':
-			$class_msg = "class='active'";
-			break;
+			$class_msg = "class='active'";break;
 		case 'schedue':
-			$class_schedue = "class='active'";
-			break;
+			$class_schedue = "class='active'";break;
 		case 'arrange':
-			$class_arrange = "class='active'";
-			break;
+			$class_arrange = "class='active'";break;
+		case 'friend':
+			$class_friend = "class='active'";break;
 		case 'main':
 		default:
-			$class_main = "class='active'";
-			break;
+			$class_main = "class='active'";break;
 	}
 
 	if((intval($_SESSION['userType']) & USER_TYPE_LV_4) == USER_TYPE_LV_4) {
@@ -51,6 +49,7 @@ function getNavbar($userName) {
 	                    <li $class_msg><a href='msg.php'><i class='icon-tasks'></i> 新留言</a></li>
 	                    <li $class_schedue><a href='schedue.php'><i class='icon-time'></i> 我的行程</a></li>
 	                    <li $class_arrange><a href='arrange.php'><i class='icon-wrench'></i> 安排約戰</a></li>
+	                    <li $class_friend><a href='friend.php'><i class='icon-thumbs-up'></i> 好朋友們</a></li>
 	                    $nav_admin
 	                </ul> 
 	            </div><!-- /.nav-collapse --> 
