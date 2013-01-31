@@ -11,7 +11,12 @@ $req_type = $_GET['req_type'];
 if($request_by_ajax != 1) {
 	$ary_js = array('jquery.qtip','commonFunction','friend');
 	$ary_css = array('xbsys');
-	pageStart($ary_js,$ary_css);
+//	font-family: 'Bubbler One', sans-serif;
+//	font-family: 'Press Start 2P', cursive;
+//	font-family: 'Open Sans Condensed', sans-serif;
+//	font-family: 'Voltaire', sans-serif;
+	$extra_css = "<link href='http://fonts.googleapis.com/css?family=Press+Start+2P|Open+Sans+Condensed:300|Voltaire' rel='stylesheet' type='text/css'>";
+	pageStart($ary_js,$ary_css,$extra_css);
 	main();
 	pageEnd();
 } else {

@@ -87,7 +87,7 @@ function getUserInfo($userId) {
 
 	return $UINFO;
 }
-function pageStart($ary_js=null,$ary_css=null) {
+function pageStart($ary_js=null,$ary_css=null, $extra_css=null) {
 	$html_navbar = getNavbar($_SESSION['userName']);
 	
 	for($i=0; $i < count($ary_js); $i++) {
@@ -104,7 +104,8 @@ function pageStart($ary_js=null,$ary_css=null) {
 			<meta charset='utf-8' />
 			<title>360成就團</title>
 			<link href='css/bootstrap.css' rel='stylesheet'>
-			$list_css</head>
+			$list_css
+			$extra_css</head>
 		<body>
 			<script src='js/jquery.js'></script>
 			<script src='js/jquery_ui.js'></script>

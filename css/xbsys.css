@@ -6,7 +6,11 @@
 }
 
 .GamerScore {
-	font-size:80px;
+	font-family: 'Voltaire', sans-serif;	
+/*	font-family: 'Bubbler One', sans-serif;	
+	font-family: 'Press Start 2P', cursive;
+	font-family: 'Open Sans Condensed', sans-serif;	*/
+	font-size:80px;	/* Press Start 2P: 40px	*/
 	text-align:center;
 	color: #555555;
 	padding-left: 0px; 
