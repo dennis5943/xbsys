@@ -15,7 +15,7 @@ function updateFriend() {
 			type: "POST",
 			url: request_url,
 			cache: false,
-			async : false,
+			async : true,
 			error: function(xhr){
 				alert("[xxx] xmlHttp Failure!!");
 			},
