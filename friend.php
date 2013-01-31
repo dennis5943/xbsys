@@ -9,7 +9,7 @@ $request_by_ajax = $_GET['request_by_ajax'];
 $loader = $_GET['loader'];
 $req_type = $_GET['req_type'];
 if($request_by_ajax != 1) {
-	$ary_js = array('commonFunction','friend');
+	$ary_js = array('jquery.qtip','commonFunction','friend');
 	pageStart($ary_js);
 	main();
 	pageEnd();
@@ -26,7 +26,7 @@ function main() {
 	
 	$sql = "select user_name from sys_user 
 		where user_id <> ".USER_ID_SYSTEM."
-		order by user_id;";
+		order by lower(user_name);";
 	$record = $sess->getResult($sql);
 	for($i=0; $i < count($record); $i++){
 		$mod = $record[$i];
@@ -37,9 +37,8 @@ function main() {
 					<div class='caption'>
 						<h3 class='gt'>".$mod->user_name."</h3>
 						<div class='AvatarBody' style='text-align:center'></div>
-						<div class='GamerScore hero-unit' style='font-size:60px'></div>
+						<div class='GamerScore hero-unit' style='font-size:60px;text-align:center;'><img src='img/loading_green_circle.gif'></div>
 						<div class='OnlineStatus'></div>
-						<div class='Bio'></div>
 					</div>
 				</div>
 			</div>";
