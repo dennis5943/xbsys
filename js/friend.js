@@ -21,7 +21,7 @@ function updateFriend() {
 			},
 			complete: function(response){
 				var strJ = JSON.parse( response.responseText );
-				obj.siblings('.AvatarBody').html("<img src='"+strJ.AvatarBody+"'>");
+				obj.siblings('.AvatarBody').html("<img src='"+strJ.AvatarBody+"' style='cursor:help'>");
 				obj.siblings('.AvatarBody').find('img').qtip({    
 					content: {    
 		                title: { text: "<h1 style='text-align:center'>" + strJ.Motto +"</h1>"},
@@ -35,15 +35,15 @@ function updateFriend() {
 						target: false
 					},
 					show: { 
-						ready: true,
+						ready: false,
 						when: {
-							event: false
+							event: 'click'
 						}
 					},
 					hide: {
-						fixed: true,
+						fixed: false,
 						when: {
-							event: false
+							event: 'click'
 						}
 					},
 					style: { 

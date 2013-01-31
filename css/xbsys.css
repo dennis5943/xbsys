@@ -1,0 +1,14 @@
+.friend {
+    background-color: #002b36;
+    color: #93a1a1;
+    font-family: Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+    padding: 9px;
+}
+
+.GamerScore {
+	font-size:80px;
+	text-align:center;
+	color: #555555;
+	padding-left: 0px; 
+	padding-right: 0px;
+}

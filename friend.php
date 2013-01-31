@@ -10,7 +10,8 @@ $loader = $_GET['loader'];
 $req_type = $_GET['req_type'];
 if($request_by_ajax != 1) {
 	$ary_js = array('jquery.qtip','commonFunction','friend');
-	pageStart($ary_js);
+	$ary_css = array('xbsys');
+	pageStart($ary_js,$ary_css);
 	main();
 	pageEnd();
 } else {
@@ -34,10 +35,10 @@ function main() {
 		$div_tmp = "
 			<div class='span4'>
 				<div class='thumbnail'>
-					<div class='caption'>
-						<h3 class='gt'>".$mod->user_name."</h3>
-						<div class='AvatarBody' style='text-align:center'></div>
-						<div class='GamerScore hero-unit' style='font-size:60px;text-align:center;'><img src='img/loading_green_circle.gif'></div>
+					<div class='friend'>
+						<h3 class='gt' style='color:#468A9B'>".$mod->user_name."</h3>
+						<div class='AvatarBody' style='text-align:center;'></div>
+						<div class='GamerScore hero-unit'><img src='img/loading_green_circle.gif'></div>
 						<div class='OnlineStatus'></div>
 					</div>
 				</div>
