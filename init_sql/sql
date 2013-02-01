@@ -8,9 +8,6 @@ REVOKE ALL on "sys_setting" from PUBLIC;
 GRANT  ALL on "sys_setting" to "postgres";
 GRANT  ALL on "sys_setting" to "www";
 
-insert into sys_setting values ('sys_msg','');
-insert into sys_setting values ('xbl_exp_days','7');
-
 DROP TABLE "sys_user";
 CREATE TABLE "sys_user" (
         "user_id" integer NOT NULL,
@@ -26,8 +23,6 @@ CREATE TABLE "sys_user" (
 REVOKE ALL on "sys_user" from PUBLIC;
 GRANT  ALL on "sys_user" to "postgres";
 GRANT  ALL on "sys_user" to "www";
-
-insert into sys_user values (1,'jasmine',7,'kakamiTW');
 
 -- DROP TABLE "sys_online_user";
 -- CREATE TABLE "sys_online_user" (
@@ -65,6 +60,12 @@ REVOKE ALL on "seq_arrange_id" from PUBLIC;
 GRANT ALL on "seq_arrange_id" to "postgres";
 GRANT ALL on "seq_arrange_id" to "www";
 
+DROP SEQUENCE "seq_game_id";
+CREATE SEQUENCE "seq_game_id" start 100 increment 1 maxvalue 2147483647 minvalue 1  cache 1 ;
+REVOKE ALL on "seq_game_id" from PUBLIC;
+GRANT ALL on "seq_game_id" to "postgres";
+GRANT ALL on "seq_game_id" to "www";
+
 DROP TABLE "log_arrange";
 CREATE TABLE "log_arrange" (
 		"arrange_id" integer NOT NULL DEFAULT nextval('"seq_arrange_id"'::text), 
@@ -89,10 +90,6 @@ CREATE TABLE "sys_game" (
 REVOKE ALL on "sys_game" from PUBLIC;
 GRANT  ALL on "sys_game" to "postgres";
 GRANT  ALL on "sys_game" to "www";
-
-insert into sys_game values (1,'Gears of War(戰爭機器)');
-insert into sys_game values (2,'Assassins Creed: Brotherhood(刺客教條: 兄弟會)');
-insert into sys_game values (3,'Assassins Creed: Revelations(刺客教條: 啟示錄)');
 
 -- status: 1=不參加, 2=未確定, 3=參加
 DROP TABLE "log_arrange_apply";

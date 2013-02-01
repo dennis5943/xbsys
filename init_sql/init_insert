@@ -1,7 +1,7 @@
 ﻿insert into sys_setting values ('sys_msg','');
 insert into sys_setting values ('xbl_exp_days','7');
 
-insert into sys_user values (1,'jasmine',7,'kakamiTW');
+insert into sys_user values (1,'kakamiTW',7,'kakamiTW');
 insert into sys_user values (5566,'system',0,'system',null,'','9999-12-31 11:11:11');
 
 insert into sys_game values (1,'Gears of War(戰爭機器)');
