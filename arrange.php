@@ -25,7 +25,7 @@ if($request_by_ajax != 1) {
 function main() {
 	$list_game = getGameList();
 	$modal = getModalAlert('Sending...');
-	$modal2 = getModalAlertBtn('新增完成');
+	$modal2 = getModalAlertBtn('新增完成<br>如果寄信小視窗還在<br>請不要關閉它');
 	
 	$str = "
 		<form class='form-horizontal'>
@@ -81,6 +81,13 @@ function main() {
 				<div class='controls'>
 					<button class='btn disabled' type='button'>備註</button>
 					<input type='text' id='txt_myMsg' placeholder='' class='input'>
+				</div>
+			</div>
+			<div class='control-group'>
+				<div class='controls'>
+						<label class='checkbox'>
+							<input type='checkbox' id='cbx_sendPtt' checked='checked'> 同時寄PTT站內信
+						</label>
 				</div>
 			</div>
 			<div class='control-group'>

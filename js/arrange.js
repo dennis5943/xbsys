@@ -1,14 +1,12 @@
 $(document).ready(function() {
-	// page is now ready, initialize the calendar...
-	$('.date').datepicker({
-		// put your options and callbacks here
-	});
-	
+	$('.date').datepicker();
 	$('.timepicker-default').timepicker();
 });
 
 function onclkSubmitArrange() {
 	$('#modal_loading').modal('toggle');
+	
+	if($('#cbx_sendPtt').attr('checked')) { sendPtt(); }
 	
 	var request_url = "arrange.php?request_by_ajax=1"
 		+"&loader=1"
@@ -35,6 +33,7 @@ function onclkSubmitArrange() {
 }
 
 function onclkSubmitNewGame() {
+	if($('#txt_gameName').val().length == 0) { return false; }
 	$('#modal_addNewGame').modal('toggle');
 	$('#modal_loading').modal('toggle');
 
@@ -56,4 +55,9 @@ function onclkSubmitNewGame() {
 			$('#modal_alertBtn').modal('toggle');
 		}
 	});
+}
+
+function sendPtt() {
+	window.open('inc/pttMailSender.php',
+'Sending...','width=800,height=170');
 }
