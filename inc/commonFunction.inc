@@ -198,7 +198,7 @@ function getXBL($gamertag) {
 		$gamertag = str_replace(' ','%20',$gamertag);
 	}
 	// Settings
-	$profileUrl = 'http://www.xboxleaders.com/api/profile/'.$gamertag.'.json';
+	$profileUrl = 'https://www.xboxleaders.com/api/profile.json?gamertag='.$gamertag;
 	
 	// Get information about me
 	$info = file_get_contents($profileUrl);
